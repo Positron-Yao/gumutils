@@ -16,9 +16,19 @@ void confirm_example() {
     cout << "Return: " << (ret ? "YES" : "NO") << endl;
 }
 
+void file_example() {
+    string ret {gumutils::file(".")};
+    cout << "Return: " << ret << endl;
+}
+
+void format_example() {
+    string ret {gumutils::format("# Hello")};
+    cout << "Return: " << endl << ret << endl;
+}
+
 int main(int argc, char** argv) {
     cout << "Hello gum!" << endl;
-    confirm_example();
+    format_example();
     return 0;
 }
 

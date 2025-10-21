@@ -2,8 +2,8 @@ add_rules("mode.debug", "mode.release")
 
 target("gum_wrapper")
     set_kind("binary")
-    set_languages("c99")
-    add_files("src/*.c")
+    set_languages("c++17")
+    add_files("src/*.cpp")
 
 --
 -- If you want to known more usage about xmake, please see https://xmake.io

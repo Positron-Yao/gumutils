@@ -26,9 +26,17 @@ void format_example() {
     cout << "Return: " << endl << ret << endl;
 }
 
+void input_example() {
+    string ret {gumutils::input("Please Input...")};
+    cout << "Return: " << endl << ret << endl;
+}
+
 int main(int argc, char** argv) {
+    if (!gumutils::init()) {
+        return 1;
+    }
     cout << "Hello gum!" << endl;
-    format_example();
+    input_example();
     return 0;
 }
 

@@ -2,6 +2,13 @@
 
 namespace gumutils {
 
+bool init() {
+    std::string cmd {"gum -v"};
+    FILE *fp {popen(cmd.c_str(), "r")};
+    fgetc(fp);
+    return pclose(fp) == 0;
+}
+
 std::vector<std::string> choose(std::vector<std::string> const& list, unsigned int limit, std::string const& options) {
     std::string cmd {"gum choose "};
     for (auto i: list) {
@@ -50,6 +57,23 @@ std::string file(std::string const& directory, std::string const& options) {
 std::string format(std::string const& template_str, std::string const& options) {
     std::string cmd {"gum format "};
     cmd += "'" + template_str + "' " + options;
+    FILE *fp {popen(cmd.c_str(), "r")};
+    char buf[1024];
+    std::string ret;
+    if (fp != nullptr) {
+        while(fgets(buf, sizeof buf, fp) != nullptr) {
+            // 直接fgets读到的结果是包含换行符的，删掉
+            trim_nl(buf);
+            ret += buf;
+        }
+    }
+    pclose(fp);
+    return ret;
+}
+
+std::string input(std::string const& placeholder, std::string const& options) {
+    std::string cmd {"gum input "};
+    cmd += "--placeholder='" + placeholder + "' " + options;
     FILE *fp {popen(cmd.c_str(), "r")};
     char buf[1024];
     std::string ret;

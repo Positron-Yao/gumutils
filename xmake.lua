@@ -1,9 +1,15 @@
 add_rules("mode.debug", "mode.release")
 
-target("gumutils")
+target("gumutils_test")
     set_kind("binary")
     set_languages("c++17")
     add_files("src/*.cpp")
+
+target("gumutils")
+    set_kind("shared")
+    set_languages("c++17")
+    add_files("src/*.cpp")
+
 
 --
 -- If you want to known more usage about xmake, please see https://xmake.io

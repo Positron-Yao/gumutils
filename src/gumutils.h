@@ -14,6 +14,7 @@ enum Alignment {
     Center
 };
 
+bool init();
 std::vector<std::string> choose(std::vector<std::string> const& list, unsigned int limit=1, std::string const& options="");
 bool confirm(std::string const& prompt, std::string const& options="");
 std::string file(std::string const& directory, std::string const& options="");
